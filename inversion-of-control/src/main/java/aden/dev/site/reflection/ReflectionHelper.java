@@ -14,28 +14,6 @@ import java.util.stream.Stream;
 
 public class ReflectionHelper {
 
-//    public static <T> void injectProperties(T object) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-//        Class<?> mainClazz = object.getClass();
-//
-//        Field[] fields = mainClazz.getDeclaredFields();
-//        for(Field field  : fields)
-//        {
-//            if (field.isAnnotationPresent(Inject.class))
-//            {
-//                field.setAccessible(true);
-//                Class<?> clazz = field.getType();
-//                System.out.println(clazz);
-//                for (Parameter param : clazz.getDeclaredConstructor().getParameters()) {
-//
-//                }
-//
-//
-////                Object fieldObject =  field.get(object);
-//                field.set( object, clazz.getDeclaredConstructor().newInstance());
-//            }
-//        }
-//    }
-
     public static <T> void injectObjectToProperty( Class<?> clazz, Map<Class<?>, Object> contextObject) throws IllegalAccessException {
         Object object = contextObject.get(clazz);
         for(Field field  : clazz.getDeclaredFields())
