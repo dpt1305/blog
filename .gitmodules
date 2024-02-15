@@ -1,0 +1,3 @@
+[submodule "inversion-of-control"]
+	path = inversion-of-control
+	url = ./inversion-of-control
