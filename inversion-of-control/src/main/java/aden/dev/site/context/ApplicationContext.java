@@ -3,6 +3,7 @@ package aden.dev.site.context;
 import aden.dev.site.anotation.Instance;
 import aden.dev.site.reflection.ReflectionHelper;
 
+import java.lang.reflect.Proxy;
 import java.util.*;
 
 public class ApplicationContext {
@@ -18,14 +19,19 @@ public class ApplicationContext {
             ApplicationContext.classSet.addAll(ReflectionHelper.findAllClassesUsingClassLoader(applicationClazz));
 
             for (Class<?> clazz : ApplicationContext.classSet) {
-                if (clazz.isAnnotationPresent(Instance.class)) {
+                if (clazz.isAnnotationPresent(Instance.class) && !clazz.isInterface()) {
                     Object newObject = clazz.getConstructor().newInstance();
+
                     ApplicationContext.contextObject.put(clazz, newObject);
+                    for (Class<?> interfaceClass : clazz.getInterfaces()) {
+                        ApplicationContext.contextObject.put(interfaceClass, newObject);
+                    }
                 }
             }
             for (Class<?> clazz : ApplicationContext.classSet) {
                 ReflectionHelper.injectObjectToProperty(clazz, ApplicationContext.contextObject);
             }
+            System.out.println("debug");
         } catch (Exception e) {
             e.printStackTrace();
         }
