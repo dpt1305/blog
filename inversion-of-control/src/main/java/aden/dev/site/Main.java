@@ -9,14 +9,13 @@ import java.lang.reflect.InvocationTargetException;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
-
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
         ApplicationContext.run(Main.class);
         try {
             Student student = (Student) ApplicationContext.getObject(Student.class);
             int result = student.getCalculator().sum(1, 2);
             System.out.println("Student calculate result : " + result);
-            System.out.println( "Student has Ruler: " + student.getRuler().getLENGTH() + student.getRuler().getMETRIC());
+            System.out.println("Student has Ruler: " + student.getRuler().getLENGTH() + student.getRuler().getMETRIC());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

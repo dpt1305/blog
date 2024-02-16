@@ -12,13 +12,13 @@ public class Student {
     @Inject
     private Ruler ruler;
 
-    public Student() {}
+    public Student() {
+    }
 
     public int sumInput(Integer... args) {
         int sum = 0;
-        for (Integer arg: args
-             ) {
-            if( arg != null) {
+        for (Integer arg : args) {
+            if (arg != null) {
                 sum = calculator.sum(arg, sum);
             }
         }
