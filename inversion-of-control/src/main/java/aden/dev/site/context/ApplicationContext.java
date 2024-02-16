@@ -3,7 +3,6 @@ package aden.dev.site.context;
 import aden.dev.site.anotation.Instance;
 import aden.dev.site.reflection.ReflectionHelper;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class ApplicationContext {
