@@ -1,8 +1,8 @@
 package aden.dev.site;
 
-import aden.dev.site.anotation.Instance;
+import aden.dev.site.anotation.AdenInstance;
 
-@Instance
+@AdenInstance
 public class Ruler {
 
     private int LENGTH = 10;

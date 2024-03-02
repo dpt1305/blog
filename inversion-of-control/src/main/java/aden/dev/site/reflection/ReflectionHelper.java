@@ -11,14 +11,23 @@ import java.util.stream.Collectors;
 
 public class ReflectionHelper {
 
-    public static <T> void injectObjectToProperty(Class<?> clazz, Map<Class<?>, Object> contextObject)
+    public static <T> void injectObjectToProperty(Class<?> clazz, Map<Class<?>, Object> contextObject, Map<String, Object> contextByName)
             throws IllegalAccessException {
         Object object = contextObject.get(clazz);
+
         for (Field field : clazz.getDeclaredFields()) {
             if (field.isAnnotationPresent(Inject.class)) {
+                Inject annotation = field.getAnnotation(Inject.class);
+                String nameInstance = annotation.name();
+
                 field.setAccessible(true);
                 Class<?> propertyClazz = field.getType();
-                field.set(object, contextObject.get(propertyClazz));
+
+                if (nameInstance.equals("")) {
+                    field.set(object, contextObject.get(propertyClazz));
+                } else {
+                    field.set(object, contextByName.get(nameInstance) );
+                }
             }
         }
     }

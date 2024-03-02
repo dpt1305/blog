@@ -6,13 +6,12 @@ import aden.dev.site.context.ApplicationContext;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ApplicationContext.run(Main.class);
+//        Phone iPhone = (Phone) ApplicationContext.getObject(Phone.class);
         try {
-            Student student = (Student) ApplicationContext.getObject(Student.class);
-            int result = student.getCalculator().sum(1, 2);
-            System.out.println("Student calculate result : " + result);
-            System.out.println("Student has Ruler: " + student.getRuler().getLENGTH() + student.getRuler().getMETRIC());
+            Phone iPhone = (Phone) ApplicationContext.getObject(Phone.class);
+            System.out.println(iPhone.toString());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
