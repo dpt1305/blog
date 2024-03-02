@@ -4,7 +4,6 @@ import aden.dev.site.anotation.AdenInstance;
 import aden.dev.site.reflection.ReflectionHelper;
 import aden.dev.site.util.StringUtils;
 
-import java.lang.annotation.Annotation;
 import java.util.*;
 
 public class ApplicationContext {
@@ -37,8 +36,9 @@ public class ApplicationContext {
                     }
                 }
             }
-            for(Object instance: ApplicationContext.instanceByName.values()) {
-                ReflectionHelper.setInstanceToProperty(instance, ApplicationContext.instanceByType, ApplicationContext.instanceByName);
+            for (Object instance : ApplicationContext.instanceByName.values()) {
+                ReflectionHelper.setInstanceToProperty(instance, ApplicationContext.instanceByType,
+                        ApplicationContext.instanceByName);
             }
             System.out.println("debug");
         } catch (Exception e) {
@@ -47,9 +47,9 @@ public class ApplicationContext {
     }
 
     public static void addInstanceByType(Class<?> type, Object object) {
-        if(ApplicationContext.instanceByType.containsKey(type)) {
+        if (ApplicationContext.instanceByType.containsKey(type)) {
 
-            List<Object> instanceList =  ApplicationContext.instanceByType.get(type);
+            List<Object> instanceList = ApplicationContext.instanceByType.get(type);
             instanceList.add(object);
 
         } else {
@@ -60,12 +60,12 @@ public class ApplicationContext {
     }
 
     public static <T extends Object> T getInstance(Class<?> clazz) throws ClassNotFoundException {
-        if(ApplicationContext.instanceByType.containsKey(clazz) == false) {
+        if (ApplicationContext.instanceByType.containsKey(clazz) == false) {
             throw new ClassNotFoundException();
         }
 
         List<Object> instanceListByType = ApplicationContext.instanceByType.get(clazz);
-        if(instanceListByType.size() > 1) {
+        if (instanceListByType.size() > 1) {
             String simpleClazzName = StringUtils.lowercaseFirstChar(clazz.getSimpleName());
             if (ApplicationContext.instanceByName.containsKey(simpleClazzName)) {
                 return (T) ApplicationContext.instanceByName.get(simpleClazzName);

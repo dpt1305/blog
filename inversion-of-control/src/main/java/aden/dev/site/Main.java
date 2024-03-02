@@ -8,16 +8,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext.run(Main.class);
-//        Phone iPhone = (Phone) ApplicationContext.getObject(Phone.class);
         try {
             Phone iPhone = (Phone) ApplicationContext.getInstance(Phone.class);
             System.out.println(
                     "Phone{" +
-                "battery=" + iPhone.getBattery().getManufactory() +
-                ", camera=" + iPhone.getCamera().getCameraCompany() +
-                ", screen=" + iPhone.getScreen().getScreen() +
-                '}'
-            );
+                            "battery=" + iPhone.getBattery().getManufactory() +
+                            ", camera=" + iPhone.getCamera().getCameraCompany() +
+                            ", screen=" + iPhone.getScreen().getScreen() +
+                            '}');
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
