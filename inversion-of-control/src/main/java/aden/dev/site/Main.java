@@ -10,8 +10,14 @@ public class Main {
         ApplicationContext.run(Main.class);
 //        Phone iPhone = (Phone) ApplicationContext.getObject(Phone.class);
         try {
-            Phone iPhone = (Phone) ApplicationContext.getObject(Phone.class);
-            System.out.println(iPhone.toString());
+            Phone iPhone = (Phone) ApplicationContext.getInstance(Phone.class);
+            System.out.println(
+                    "Phone{" +
+                "battery=" + iPhone.getBattery().getManufactory() +
+                ", camera=" + iPhone.getCamera().getCameraCompany() +
+                ", screen=" + iPhone.getScreen().getScreen() +
+                '}'
+            );
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

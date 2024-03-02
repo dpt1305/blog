@@ -1,15 +1,15 @@
 package aden.dev.site;
 
-import aden.dev.site.anotation.Inject;
+import aden.dev.site.anotation.InjectInstance;
 import aden.dev.site.anotation.AdenInstance;
 
 @AdenInstance
 public class Student {
 
-    @Inject
+    @InjectInstance
     private Calculator calculator;
 
-    @Inject
+    @InjectInstance
     private Ruler ruler;
 
     public Student() {

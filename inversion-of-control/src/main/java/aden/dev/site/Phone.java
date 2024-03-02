@@ -1,29 +1,41 @@
 package aden.dev.site;
 
-import aden.dev.site.anotation.Inject;
+import aden.dev.site.anotation.InjectInstance;
 import aden.dev.site.anotation.AdenInstance;
 
 @AdenInstance
 public class Phone {
-    @Inject
+    @InjectInstance
     private IBattery battery;
 
-    @Inject
+    @InjectInstance(name = "samsungCamera")
     private ICamera camera;
 
-    @Inject
+    @InjectInstance
     private IScreen screen;
 
 
     public Phone() {
     }
 
-    @Override
-    public String toString() {
-        return "Phone{" +
-                "battery=" + battery.getManufactory() +
-                ", camera=" + camera.getCameraCompany() +
-                ", screen=" + screen.getScreen() +
-                '}';
+    public IBattery getBattery() {
+        return battery;
     }
+
+    public ICamera getCamera() {
+        return camera;
+    }
+
+    public IScreen getScreen() {
+        return screen;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Phone{" +
+//                "battery=" + battery.getManufactory() +
+//                ", camera=" + camera.getCameraCompany() +
+//                ", screen=" + screen.getScreen() +
+//                '}';
+//    }
 }
