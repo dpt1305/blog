@@ -32,6 +32,3 @@ jobs:
 
       # - name: Build and deploy to AWS (replace with your deployment commands)
       #   run: npm run build && aws s3 cp --recursive build s3://your-bucket-name/ # Or your deployment commands
-
-env:
-  AWS_REGION: ap-southeast-1
