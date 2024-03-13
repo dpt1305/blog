@@ -4,6 +4,9 @@ on:
   push:
     branches: [cloud-formation-demo]
 
+env:
+  AWS_REGION: ap-southeast-1
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,15 +21,17 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::081322589116:role/github-action-role
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
 
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
       # - name: Install dependencies (replace with your build steps)
       #   run: npm install # Or your specific build command
 
       # - name: Build and deploy to AWS (replace with your deployment commands)
       #   run: npm run build && aws s3 cp --recursive build s3://your-bucket-name/ # Or your deployment commands
 
-env:
-  AWS_REGION: ap-southeast-1
+
