@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   This is a stack for cloud-driver
 Resources:
-  CloudDriver:
-    Type: "AWS::S3::Bucket"
+  MyS3Bucket:
+    Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Ref CloudDriver
+      BucketName: !Ref ParameterC
