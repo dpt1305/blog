@@ -26,4 +26,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Create stack
-        run: aws cloudformation deploy --stack-name cloud-driver-stack  --template-file file://cloud-formation-demo/init.yaml --retain-except-on-create
+        run: aws cloudformation deploy --stack-name cloud-driver-stack  --template-file file://cloud-formation-demo/init.yaml
