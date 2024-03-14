@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: ap-southeast-1
-  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -25,17 +25,8 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Print assumed role
-        run: aws sts get-caller-identity
-
-      - name: test location
-        run: cat cloud-formation-demo/init.yaml 
-        
       - name: Create stack
         run: >
           aws cloudformation create-stack 
           --stack-name cloud-driver-stack 
           --template-body file://cloud-formation-demo/init.yaml
-     
-
-
