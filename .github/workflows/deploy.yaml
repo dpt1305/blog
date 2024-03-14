@@ -29,5 +29,5 @@ jobs:
         run: >
           aws cloudformation deploy
           --stack-name cloud-driver-stack 
-          --template-body file://cloud-formation-demo/init.yaml
+          --template-file file://cloud-formation-demo/init.yaml
           --no-disable-rollback
