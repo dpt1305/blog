@@ -29,7 +29,6 @@ jobs:
         run: >
           aws cloudformation create
           --stack-name cloud-driver-stack 
-          --template-file file://cloud-formation-demo/init.yaml
-          --no-fail-on-empty-changeset
+          --template-body file://cloud-formation-demo/init.yaml
           --no-disable-rollback
           --debug
