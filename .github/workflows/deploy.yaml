@@ -27,6 +27,12 @@ jobs:
 
       - name: Print assumed role
         run: aws sts get-caller-identity
+
+      - name: test location
+        run: pwd 
+      # - name: Create stack
+      #   uses: 
+      #   run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body 
       # - name: Install dependencies (replace with your build steps)
       #   run: npm install # Or your specific build command
 
