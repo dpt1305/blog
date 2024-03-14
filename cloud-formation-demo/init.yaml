@@ -4,3 +4,5 @@ Description: >
 Resources:
   CloudDriver:
     Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref CloudDriver
