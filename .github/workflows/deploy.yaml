@@ -27,6 +27,7 @@ jobs:
 
       - name: Create stack
         run: >
-          aws cloudformation create-stack 
+          aws cloudformation deploy
           --stack-name cloud-driver-stack 
           --template-body file://cloud-formation-demo/init.yaml
+          --no-disable-rollback
