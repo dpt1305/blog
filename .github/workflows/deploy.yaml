@@ -32,3 +32,4 @@ jobs:
           --template-file file://cloud-formation-demo/init.yaml
           --no-fail-on-empty-changeset
           --no-disable-rollback
+          --debug
