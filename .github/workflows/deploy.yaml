@@ -21,7 +21,7 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: "${{ secrets.ACTION_ROLE }}"
+          role-to-assume: "${{ vars.ACTION_ROLE }}"
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
