@@ -30,13 +30,9 @@ jobs:
 
       - name: test location
         run: pwd 
-      # - name: Create stack
-      #   uses: 
-      #   run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body 
-      # - name: Install dependencies (replace with your build steps)
-      #   run: npm install # Or your specific build command
-
-      # - name: Build and deploy to AWS (replace with your deployment commands)
-      #   run: npm run build && aws s3 cp --recursive build s3://your-bucket-name/ # Or your deployment commands
+        
+      - name: Create stack
+        run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body cloud-formation-demo/init.yml
+     
 
 
