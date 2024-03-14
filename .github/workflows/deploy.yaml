@@ -32,7 +32,10 @@ jobs:
         run: cat cloud-formation-demo/init.yaml 
         
       - name: Create stack
-        run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body cloud-formation-demo/init.yaml
+        run: >
+          aws cloudformation create-stack 
+          --stack-name cloud-driver-stack 
+          --template-body file://cloud-formation-demo/init.yaml
      
 
 
