@@ -29,10 +29,10 @@ jobs:
         run: aws sts get-caller-identity
 
       - name: test location
-        run: pwd 
+        run: cat cloud-formation-demo/init.yaml 
         
       - name: Create stack
-        run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body cloud-formation-demo/init.yml
+        run: aws cloudformation create-stack --stack-name cloud-driver-stack --template-body cloud-formation-demo/init.yaml
      
 
 
