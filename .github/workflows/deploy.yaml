@@ -26,4 +26,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Create stack
-        run: aws cloudformation create-stack --stack-name cloud-driver-stack  --template-body file://cloud-formation-demo/init.yaml
+        run: >
+          aws cloudformation create-stack --stack-name cloud-driver-stack --template-body file://deploy-cloudformation.yaml --on-failure DO_NOTHING 
+          | aws cloudformation update-stack --stack-name cloud-driver-stack --template-body file://deploy-cloudformation.yaml --disable-rollback
