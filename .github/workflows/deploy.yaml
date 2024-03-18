@@ -6,6 +6,9 @@ on:
 
 env:
   AWS_REGION: ap-southeast-1
+  AWS_ROLE: arn:aws:iam::081322589116:role/github-action-role
+  STACK: cloud-driver-stack
+  FILE_PATH: cloud-formation-demo/init.yaml
 
 jobs:
   deploy:
@@ -21,11 +24,12 @@ jobs:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::081322589116:role/github-action-role
+          role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Create stack
-        run: >
-          aws cloudformation create-stack --stack-name cloud-driver-stack --template-body file://cloud-formation-demo/init.yaml --on-failure DO_NOTHING 
-          || aws cloudformation update-stack --stack-name cloud-driver-stack --template-body file://cloud-formation-demo/init.yaml --disable-rollback
+      - name: Delete old stack
+        run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
+
+      - name: Create new stack
+        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }} --on-failure ROLLBACK
