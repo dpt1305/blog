@@ -32,4 +32,4 @@ jobs:
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
-        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }} --on-failure ROLLBACK
+        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
