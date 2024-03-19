@@ -28,13 +28,15 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
+          
       - name: Delete forcely S3 bucket
         run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  --only-show-errors true
 
       - name: Delete old stack 
+        id: deleteStack
         if: always()
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
-        if: success()
+        if: steps.deleteStack.outputs.workflows == 'true'
         run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
