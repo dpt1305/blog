@@ -9,6 +9,7 @@ env:
   AWS_ROLE: arn:aws:iam::081322589116:role/github-action-role
   STACK: cloud-driver-stack
   FILE_PATH: cloud-formation-demo/init.yaml
+  S3_BUCKET_NAME: cloud-driver-bucket
 
 jobs:
   deploy:
@@ -27,8 +28,10 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
+      - name: Delete forcely S3 bucket
+        run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  
 
-      - name: Delete old stack
+      - name: Delete old stack 
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
