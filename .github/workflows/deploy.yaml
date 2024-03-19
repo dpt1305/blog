@@ -32,6 +32,7 @@ jobs:
         run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  --only-show-errors
 
       - name: Delete old stack 
+        if: always()
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
