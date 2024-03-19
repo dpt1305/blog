@@ -29,14 +29,20 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
           
-      - name: Delete forcely S3 bucket
-        run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  --only-show-errors true
 
-      - name: Delete old stack 
-        id: deleteStack
-        if: always()
-        run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
+#      - name: Delete old stack 
+#        id: deleteStack
+#        if: always()
+ #       run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
-      - name: Create new stack
-        if: steps.deleteStack.outputs.workflows == 'true'
-        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
+#      - name: Create new stack
+#        if: steps.deleteStack.outputs.workflows == 'true'
+#        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
+       
+      - name: AWS CloudFormation "Deploy CloudFormation Stack" Action for GitHub Actions
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ env.S3_BUCKET_NAME }}
+          template: file://${{ env.FILE_PATH }}
+          no-fail-on-empty-changeset: "1"
+            
