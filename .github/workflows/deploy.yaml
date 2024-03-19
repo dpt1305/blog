@@ -43,6 +43,6 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: ${{ env.S3_BUCKET_NAME }}
-          template: file://${{ env.FILE_PATH }}
+          template: ${{ env.FILE_PATH }}
           no-fail-on-empty-changeset: "1"
             
