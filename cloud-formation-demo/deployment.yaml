@@ -1,0 +1,9 @@
+template-file-path: cloud-formation-demo/init.yaml
+parameters:
+  image: public.ecr.aws/lts/nginx:latest
+  task_size: x-small
+  max_capacity: '5'
+  port: '8000'
+  env: production
+tags:
+  name: cloud-driver
