@@ -29,7 +29,7 @@ jobs:
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
       - name: Delete forcely S3 bucket
-        run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  
+        run: aws s3 rb s3://${{ env.S3_BUCKET_NAME }} --force  --only-show-errors
 
       - name: Delete old stack 
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
