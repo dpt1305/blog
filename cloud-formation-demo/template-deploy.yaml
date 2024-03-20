@@ -1,5 +1,4 @@
 template-file-path: cloud-formation-demo/init.yaml
 
-
 tags:
     name: cloud-driver
