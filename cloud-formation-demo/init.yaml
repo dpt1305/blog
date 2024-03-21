@@ -8,5 +8,9 @@ Resources:
       BucketName: cloud-driver-bucket
       Tags:
         name: cloud-driver-bucket
-  # CognitorPool:
-  #   Type: 'AWS::Cognito::UserPool'
+  CognitorPool:
+    Type: 'AWS::Cognito::UserPool'
+    Properties:
+      UserPoolTags:
+        name: cloud-driver-user-pool
+
