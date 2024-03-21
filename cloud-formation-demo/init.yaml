@@ -6,5 +6,7 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: cloud-driver-bucket
-  CognitorPool:
-    Type: 'AWS::Cognito::UserPool'
+      Tags:
+        name: cloud-driver-bucket
+  # CognitorPool:
+  #   Type: 'AWS::Cognito::UserPool'
