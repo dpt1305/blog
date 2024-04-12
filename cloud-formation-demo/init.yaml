@@ -1,16 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: >
-  This is a stack for cloud-driver
 Resources:
-  MyS3Bucket:
-    Type: 'AWS::S3::Bucket'
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
     Properties:
-      BucketName: cloud-driver-bucket
+      ImageId: ami-0910e4162f162c238 # Replace with your desired AMI ID
+      InstanceType: t2.micro # Replace with your desired instance type
+      KeyName: eazy-note-key # Replace with your EC2 key pair name
+      SecurityGroupIds:
+        - sg-0a3c82b537be49b31 # Replace with your security group ID
       Tags:
-        name: cloud-driver-bucket
-  CognitorPool:
-    Type: 'AWS::Cognito::UserPool'
-    Properties:
-      UserPoolTags:
-        name: cloud-driver-user-pool
-
+        - Key: Name
+          Value: MyEC2Instance-demo
