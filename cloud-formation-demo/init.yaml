@@ -8,6 +8,7 @@ Resources:
       KeyName: eazy-note-key # Replace with your EC2 key pair name
       SecurityGroupIds:
         - sg-0a3c82b537be49b31 # Replace with your security group ID
+
       Tags:
         - Key: Name
           Value: MyEC2Instance-demo
