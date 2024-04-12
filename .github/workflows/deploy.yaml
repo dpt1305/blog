@@ -33,13 +33,13 @@ jobs:
         run: |
           aws sts get-caller-identity
 
-      - name: Delete old stack
-        id: deleteStack
-        if: always()
-        run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
+      # - name: Delete old stack
+      #   id: deleteStack
+      #   if: always()
+      #   run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
-        if: steps.deleteStack.outputs.workflows == 'true'
+        # if: steps.deleteStack.outputs.workflows == 'true'
         run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
 # - name: AWS CloudFormation "Deploy CloudFormation Stack" Action for GitHub Actions
 #   uses: aws-actions/aws-cloudformation-github-deploy@v1
