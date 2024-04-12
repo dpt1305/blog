@@ -22,6 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: us-east-2
+
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -33,14 +40,14 @@ jobs:
         run: |
           aws sts get-caller-identity
 
+      - name: Create new stack
+        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
+        # if: steps.deleteStack.outputs.workflows == 'true'
+
       # - name: Delete old stack
       #   id: deleteStack
       #   if: always()
       #   run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
-
-      - name: Create new stack
-        # if: steps.deleteStack.outputs.workflows == 'true'
-        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
 # - name: AWS CloudFormation "Deploy CloudFormation Stack" Action for GitHub Actions
 #   uses: aws-actions/aws-cloudformation-github-deploy@v1
 #   with:
