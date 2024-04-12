@@ -39,8 +39,8 @@ jobs:
         run: aws cloudformation delete-stack --stack-name ${{ env.STACK }}
 
       - name: Create new stack
-        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
         if: steps.deleteStack.outputs.workflows == 'true'
+        run: aws cloudformation create-stack --stack-name ${{ env.STACK }} --template-body file://${{ env.FILE_PATH }}
 # - name: AWS CloudFormation "Deploy CloudFormation Stack" Action for GitHub Actions
 #   uses: aws-actions/aws-cloudformation-github-deploy@v1
 #   with:
