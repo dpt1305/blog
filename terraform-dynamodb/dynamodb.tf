@@ -1,5 +1,10 @@
+locals  {
+	name = "Users"
+}
+
+
 resource "aws_dynamodb_table" "Users" {
-  name           = "Users"
+  name           =  local.name
 
 	/**
 	* billing_mode:
