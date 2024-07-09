@@ -24,10 +24,10 @@ resource "aws_cloudwatch_metric_alarm" "item_count_alarm" {
   threshold = 2
   evaluation_periods = 5  # Evaluate over 2 periods (e.g., 2 minutes)
   statistic = "Sum"
-  period = 10            # Period of the metric data (e.g., 1 minute)
+  period = 60            # Period of the metric data (e.g., 1 minute)
   namespace = "AWS/DynamoDB"
-  metric_name = "ReturnedItemCount"
-    dimensions = {
+  metric_name = "SuccessfulRequestLatency"
+  dimensions = {
     TableName = aws_dynamodb_table.Users.name
   }
 
