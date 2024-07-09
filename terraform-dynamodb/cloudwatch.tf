@@ -22,19 +22,18 @@ resource "aws_cloudwatch_metric_alarm" "item_count_alarm" {
   alarm_description = "Alarm triggered if item count in ${aws_dynamodb_table.Users.name} exceeds 10"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   threshold = 2
-  evaluation_periods = 1  # Evaluate over 2 periods (e.g., 2 minutes)
+  evaluation_periods = 5  # Evaluate over 2 periods (e.g., 2 minutes)
   statistic = "Sum"
-  period = 50            # Period of the metric data (e.g., 1 minute)
+  period = 10            # Period of the metric data (e.g., 1 minute)
   namespace = "AWS/DynamoDB"
-  metric_name = "ItemCount"
+  metric_name = "ReturnedItemCount"
     dimensions = {
     TableName = aws_dynamodb_table.Users.name
   }
 
 
-
   # Alarm actions (optional)
   # You can configure SNS notifications or Lambda function invocation here
   actions_enabled     = "true"
-  alarm_actions       = [aws_sns_topic.sns_fifo_example.arn]
+  alarm_actions       = [aws_sns_topic.sns_dynamo_trigger.arn]
 }
